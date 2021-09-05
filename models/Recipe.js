@@ -16,10 +16,6 @@ const RecipeSchema = new Schema({
   },
   ingredients: [
     {
-      id: {
-        type: Number,
-        default: 0,
-      },
       name: {
         type: String,
         default: "",
@@ -34,7 +30,7 @@ const RecipeSchema = new Schema({
       },
     },
   ],
-  intructions: {
+  instructions: {
     type: String,
     default: "",
   },

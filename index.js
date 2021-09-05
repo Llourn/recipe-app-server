@@ -23,7 +23,6 @@ mongoose
 const Recipe = require("./models/Recipe");
 
 app.post("/recipe/new", (req, res) => {
-  console.log("CALLED");
   const recipe = new Recipe({
     name: req.body.name,
     serves: req.body.serves,
@@ -34,6 +33,22 @@ app.post("/recipe/new", (req, res) => {
 
   recipe.save();
 
+  res.json(recipe);
+});
+
+app.get("/recipes", async (req, res) => {
+  const recipes = await Recipe.find({}, (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response);
+    }
+  });
+  res.json(recipes);
+});
+
+app.get("/recipes/:id", async (req, res) => {
+  const recipe = await Recipe.findById(req.params.id);
   res.json(recipe);
 });
 
